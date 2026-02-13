@@ -10,7 +10,7 @@ export async function POST(request: Request) {
 
     const { data, error } = await resend.emails.send({
       from: 'R&B Labs <onboarding@resend.dev>', // Ou seu domínio verificado
-      to: ['seu-email@gmail.com'], // COLOQUE SEU E-MAIL AQUI
+      to: ['raphaellima6@gmail.com'], // COLOQUE SEU E-MAIL AQUI
       subject: `🔥 Novo Lead Qualificado: ${empresa}`,
       html: `
         <h1>Novo Pedido de Diagnóstico</h1>
