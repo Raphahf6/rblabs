@@ -1,65 +1,124 @@
-import Image from "next/image";
+"use client"
+import { useState } from 'react';
+import Hero from "@/components/Hero";
+import Stats from "@/components/Stats";
+import PainPoints from "@/components/PainPoints";
+import CaseStudies from "@/components/CaseStudies";
+import Methodology from "@/components/Methodology";
+import Comparison from "@/components/Comparison";
+import Solutions from "@/components/Solutions";
+import Testimonials from "@/components/Testimonials";
+import About from "@/components/About";
+import FAQ from "@/components/FAQ";
+import TechStack from "@/components/TechStack";
+import Footer from "@/components/Footer";
+import DiagnosisModal from '@/components/DiagnosisModal';
+import FadeIn from "@/components/ui/FadeIn"; // Certifique-se de ter criado este componente
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="min-h-screen flex flex-col overflow-x-hidden bg-white">
+      
+      {/* 1. HERO (Passamos a função openModal para o botão principal) */}
+      <div id="inicio">
+        <Hero onCtaClick={openModal} />
+      </div>
+
+      {/* 2. STATS (Prova Lógica - Dados de Mercado) */}
+      <FadeIn delay={0.2}>
+        <Stats />
+      </FadeIn>
+      
+      {/* 3. PAIN POINTS (A Dor do Cliente) */}
+      <div id="problemas">
+        <FadeIn>
+          <PainPoints />
+        </FadeIn>
+      </div>
+
+      {/* 4. CASES (Prova Social / Storytelling) */}
+      <div id="cases">
+        <FadeIn>
+          <CaseStudies />
+        </FadeIn>
+      </div>
+
+      {/* 5. METODOLOGIA (Segurança - Como trabalhamos) */}
+      <div id="metodologia">
+        <FadeIn>
+          <Methodology />
+        </FadeIn>
+      </div>
+
+      {/* 6. COMPARAÇÃO (SaaS vs Custom - Matador de Objeção Financeira) */}
+      <FadeIn>
+        <Comparison />
+      </FadeIn>
+
+      {/* 7. SOLUÇÕES (O Técnico - O que entregamos) */}
+      <div id="solucoes">
+        <FadeIn>
+          <Solutions />
+        </FadeIn>
+      </div>
+
+      {/* 8. DEPOIMENTOS (Validação Social) */}
+      <div id="depoimentos">
+        <FadeIn>
+          <Testimonials />
+        </FadeIn>
+      </div>
+
+      {/* 9. SOBRE (Autoridade do Fundador) */}
+      <div id="sobre">
+        <FadeIn>
+          <About />
+        </FadeIn>
+      </div>
+
+      {/* 10. FAQ (Matador de Medos Finais) */}
+      <FadeIn>
+        <FAQ />
+      </FadeIn>
+
+      {/* 11. TECH STACK (Autoridade Técnica) */}
+      <TechStack />
+      
+      {/* 12. CTA FINAL (Chamada para Ação Definitiva) */}
+      <section id="contato" className="bg-blue-900 py-24 text-center px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid-pattern.png')] opacity-10"></div>
+        <FadeIn direction="up">
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Vamos calcular quanto sua empresa perde por não ter sistema próprio?
+            </h2>
+            <p className="text-blue-200 mb-10 text-lg">
+              Agende uma sessão de diagnóstico gratuita. Analisamos seu processo atual e desenhamos a solução ideal (Blueprint).
+            </p>
+            
+            <button 
+              onClick={openModal}
+              className="inline-block bg-white text-blue-900 hover:bg-blue-50 font-bold py-5 px-10 rounded-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105 duration-300 transform"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              Agendar Diagnóstico Agora
+            </button>
+            
+            <p className="mt-4 text-blue-300 text-sm">
+              *Poucas vagas disponíveis para este mês devido à alta demanda.
+            </p>
+          </div>
+        </FadeIn>
+      </section>
+
+      <Footer />
+
+      {/* O MODAL (Fica invisível até ser chamado) */}
+      <DiagnosisModal isOpen={isModalOpen} onClose={closeModal} />
+    </main>
   );
 }
