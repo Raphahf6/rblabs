@@ -43,8 +43,8 @@ export default function DiagnosisModal({ isOpen, onClose }: Props) {
 
   // Redirecionar para WhatsApp após cadastro (Opcional, mas recomendado para manter o lead quente)
   const handleWhatsAppRedirect = () => {
-    const text = `Olá Raphael, acabei de preencher o diagnóstico da ${formData.empresa}. Podemos conversar?`;
-    window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(text)}`, '_blank');
+    const text = `Olá, acabei de preencher o diagnóstico da ${formData.empresa}. Podemos conversar?`;
+    window.open(`https://wa.me/551136200327?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
@@ -146,7 +146,7 @@ export default function DiagnosisModal({ isOpen, onClose }: Props) {
                   </div>
                   <h2 className="text-2xl font-bold text-slate-900 mb-2">Recebemos seu pedido!</h2>
                   <p className="text-slate-600 mb-8">
-                    O Raphael da R&B Labs vai analisar seu perfil e entrar em contato em breve.
+                    A R&B Labs vai analisar seu perfil e entrar em contato em breve.
                   </p>
                   
                   <button 

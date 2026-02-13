@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Consultoria de TI", 
     "Sistema de Gestão Customizado"
   ],
-  authors: [{ name: "Raphael", url: "https://www.linkedin.com/in/seu-linkedin" }],
+  authors: [{ name: "Raphael", url: "https://www.linkedin.com/in/raphaml5" }],
   creator: "R&B Labs",
   
   // Configuração para WhatsApp, LinkedIn, Facebook (Open Graph)
