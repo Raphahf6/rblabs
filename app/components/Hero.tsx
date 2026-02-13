@@ -41,7 +41,7 @@ export default function Hero({ onCtaClick }: HeroProps) {
 
           {/* Menu Desktop */}
           <div className="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
-            <button onClick={() => scrollToSection('problemas')} className="hover:text-blue-600 transition-colors">Por que ter?</button>
+            <button onClick={() => scrollToSection('stats')} className="hover:text-blue-600 transition-colors">Por que ter?</button>
             <button onClick={() => scrollToSection('cases')} className="hover:text-blue-600 transition-colors">Cases Reais</button>
             <button onClick={() => scrollToSection('metodologia')} className="hover:text-blue-600 transition-colors">Como funciona</button>
             <button onClick={() => scrollToSection('sobre')} className="hover:text-blue-600 transition-colors">Quem somos</button>

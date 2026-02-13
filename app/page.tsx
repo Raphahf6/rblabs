@@ -30,10 +30,11 @@ export default function Home() {
       </div>
 
       {/* 2. STATS (Prova Lógica - Dados de Mercado) */}
+      <div id="stats">
       <FadeIn delay={0.2}>
         <Stats />
       </FadeIn>
-      
+      </div>
       {/* 3. PAIN POINTS (A Dor do Cliente) */}
       <div id="problemas">
         <FadeIn>
