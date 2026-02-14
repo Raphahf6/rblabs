@@ -13,7 +13,7 @@ export default function FAQ() {
     },
     {
       q: "Quanto custa desenvolver um sistema sob medida?",
-      a: "Depende da complexidade. Projetos de entrada (MVPs) geralmente variam entre R$ 15k e R$ 25k. Sistemas robustos de gestão podem variar de R$ 30k a R$ 80k. O importante é que desenhamos a solução para se pagar (ROI) em menos de 12 meses."
+      a: "Como cada operação é única, o investimento varia conforme a complexidade e as tecnologias escolhidas. Não trabalhamos com preços tabelados. Nosso compromisso é desenhar uma solução que se pague (ROI) em poucos meses com a economia gerada ou o aumento de receita. Agende o diagnóstico para recebermos um orçamento exato para o seu desafio."
     },
     {
       q: "Como funciona o pagamento?",
