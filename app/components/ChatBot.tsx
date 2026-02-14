@@ -116,8 +116,8 @@ export default function ChatBot({ onClose }: ChatBotProps) {
       case 2: // Desafio -> Orçamento
         setFormData(prev => ({ ...prev, desafio: lastAnswer }));
         setStep(3);
-        await botTypeAndSend("Certo. Para eu sugerir a tecnologia adequada...");
-        await botTypeAndSend("Qual sua faixa de investimento prevista para resolver isso?");
+        await botTypeAndSend("Obrigado por compartilhar. Isso nos ajuda a entender melhor suas necessidades.");
+        await botTypeAndSend("Para dimensionar a complexidade técnica, como você classificaria o projeto que tem em mente?");
         setIsInputVisible(true);
         break;
 
@@ -125,7 +125,7 @@ export default function ChatBot({ onClose }: ChatBotProps) {
         setFormData(prev => ({ ...prev, orcamento: lastAnswer }));
         setStep(4);
         await botTypeAndSend("Perfeito. Estamos quase lá.");
-        await botTypeAndSend("Por último, qual seu WhatsApp (com DDD) para enviarmos o diagnóstico?");
+        await botTypeAndSend("Por último, qual seu WhatsApp (com DDD)?");
         setIsInputVisible(true);
         break;
 
