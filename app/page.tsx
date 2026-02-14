@@ -109,9 +109,6 @@ export default function Home() {
               Agendar Diagnóstico Agora
             </button>
             
-            <p className="mt-4 text-blue-300 text-sm">
-              *Poucas vagas disponíveis para este mês devido à alta demanda.
-            </p>
           </div>
         </FadeIn>
       </section>
