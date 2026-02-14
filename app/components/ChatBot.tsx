@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, User, Code2, ArrowLeft, CheckCircle, ArrowRight, X } from 'lucide-react';
+import { Send, Code2, ArrowRight, X, RotateCcw } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -23,7 +23,7 @@ export default function ChatBot({ onClose }: ChatBotProps) {
   
   // Refs para controle
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const hasInitialized = useRef(false); // <--- CORREÇÃO DO BUG DE DUPLICAÇÃO
+  const hasInitialized = useRef(false);
 
   const [formData, setFormData] = useState({
     nome: '',
@@ -41,23 +41,36 @@ export default function ChatBot({ onClose }: ChatBotProps) {
     scrollToBottom();
   }, [messages, isTyping, isInputVisible]);
 
+  // Função de Início do Chat
+  const startChat = async () => {
+    setIsInputVisible(false);
+    await botTypeAndSend("Olá! Sou a Sofia, assistente virtual da R&B Labs. 👋");
+    await botTypeAndSend("Vou te ajudar a descobrir se podemos transformar sua empresa com tecnologia.");
+    await botTypeAndSend("Para começar, qual é o seu nome?");
+    setIsInputVisible(true);
+  };
+
   // --- INICIALIZAÇÃO SEGURA ---
   useEffect(() => {
-    if (hasInitialized.current) return; // Se já iniciou, para aqui.
+    if (hasInitialized.current) return;
     hasInitialized.current = true;
-
-    const startChat = async () => {
-      setIsInputVisible(false);
-      await botTypeAndSend("Olá! Sou a Sofia, IA da R&B Labs. 👋");
-      await botTypeAndSend("Vou te ajudar a descobrir se podemos transformar sua empresa com tecnologia.");
-      await botTypeAndSend("Para começar, qual é o seu nome?");
-      setIsInputVisible(true);
-    };
-
     startChat();
   }, []);
 
-  const botTypeAndSend = (text: string, delay = 1200): Promise<void> => {
+  // --- FUNÇÃO DE REINICIAR ---
+  const handleRestart = () => {
+    setMessages([]);
+    setStep(0);
+    setFormData({ nome: '', empresa: '', desafio: '', orcamento: '', whatsapp: '' });
+    setIsInputVisible(false);
+    setInputValue("");
+    // Reinicia o fluxo
+    setTimeout(() => {
+      startChat();
+    }, 100);
+  };
+
+  const botTypeAndSend = (text: string, delay = 1000): Promise<void> => {
     return new Promise((resolve) => {
       setIsTyping(true);
       scrollToBottom();
@@ -131,8 +144,8 @@ export default function ChatBot({ onClose }: ChatBotProps) {
           await botTypeAndSend("Recebido! ✅");
           await botTypeAndSend("O Raphael (nosso Engenheiro Chefe) já recebeu seu perfil e vai entrar em contato em breve.");
           
-          // Fecha após 5 segundos
-          setTimeout(onClose, 5000);
+          // Fecha após 6 segundos
+          setTimeout(onClose, 6000);
         } catch (error) {
           await botTypeAndSend("Ops, tive um erro de conexão. Mas anotei seus dados!");
         } finally {
@@ -144,18 +157,23 @@ export default function ChatBot({ onClose }: ChatBotProps) {
 
   // --- RENDERIZADORES DE INPUT ---
   const renderInputArea = () => {
-    // Passo 2: Botões de Desafio
+    // Passo 2: Botões de Desafio (Linguagem Simplificada)
     if (step === 2) {
-      const options = ["Processos Manuais/Planilhas", "Taxas Altas (SaaS/iFood)", "Quero criar um App/SaaS", "Outro"];
+      const options = [
+        "Muitas Planilhas / Processo Manual", 
+        "Quero reduzir custos com Taxas", 
+        "Quero criar um Aplicativo Próprio", 
+        "Outro Desafio"
+      ];
       return (
-        <div className="flex flex-wrap gap-2 justify-end p-4">
+        <div className="flex flex-wrap gap-2 justify-end p-4 bg-slate-50/50">
           {options.map(opt => (
             <motion.button 
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               key={opt} 
               onClick={() => handleSend(opt)} 
-              className="px-5 py-3 bg-white border border-blue-100 text-blue-600 rounded-2xl text-sm font-medium hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+              className="px-5 py-3 bg-white border border-blue-100 text-blue-700 rounded-2xl text-sm font-medium hover:bg-blue-600 hover:text-white transition-all shadow-sm"
             >
               {opt}
             </motion.button>
@@ -164,11 +182,15 @@ export default function ChatBot({ onClose }: ChatBotProps) {
       );
     }
 
-    // Passo 3: Botões de Orçamento
+    // Passo 3: Botões de Orçamento (Linguagem de Negócios)
     if (step === 3) {
-      const options = ["Até R$ 5k (MVP)", "R$ 15k - R$ 30k (Ideal)", "+ R$ 40k (Enterprise)"];
+      const options = [
+        "Projeto Pontual / Início Rápido", 
+        "Sistema Completo (Gestão Total)", 
+        "Alta Escala / Rede de Lojas"
+      ];
       return (
-        <div className="flex flex-col gap-2 p-4 w-full max-w-md ml-auto">
+        <div className="flex flex-col gap-2 p-4 w-full max-w-md ml-auto bg-slate-50/50">
           {options.map(opt => (
             <motion.button 
               initial={{ x: 20, opacity: 0 }}
@@ -197,7 +219,7 @@ export default function ChatBot({ onClose }: ChatBotProps) {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder={step === 4 ? "Ex: (11) 99999-9999" : "Digite sua mensagem..."}
-            className="flex-1 bg-slate-100 border-0 rounded-full px-5 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            className="flex-1 bg-slate-100 border-0 rounded-full px-5 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all placeholder:text-slate-400"
             disabled={loading}
           />
           <button 
@@ -213,31 +235,46 @@ export default function ChatBot({ onClose }: ChatBotProps) {
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#F0F2F5] relative font-sans">
-      {/* HEADER FIXO DO BOT */}
-      <div className="bg-white px-4 py-3 shadow-sm border-b border-slate-100 flex justify-between items-center z-20">
+    <div className="flex flex-col h-full bg-[#F5F7FB] relative font-sans">
+      
+      {/* HEADER */}
+      <div className="bg-white px-4 py-3 shadow-sm border-b border-slate-100 flex justify-between items-center z-20 shrink-0">
         <div className="flex items-center gap-3">
           <div className="relative">
-            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center border border-blue-200">
-              <Code2 size={20} className="text-blue-600" />
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-md">
+              <Code2 size={20} className="text-white" />
             </div>
             <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
           </div>
-          <div>
-            <h3 className="font-bold text-slate-800 text-sm">R&B Assistant</h3>
-            <p className="text-xs text-slate-500">Responde instantaneamente</p>
+          <div className="flex flex-col">
+            <h3 className="font-bold text-slate-800 text-sm leading-tight">R&B Assistant</h3>
+            <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wide">Online</span>
           </div>
         </div>
-        <button 
-          onClick={onClose}
-          className="p-2 hover:bg-slate-100 rounded-full text-slate-400 transition-colors"
-        >
-          <X size={24} />
-        </button>
+        
+        <div className="flex items-center gap-2">
+          {/* Botão de Reiniciar */}
+          <button 
+            onClick={handleRestart}
+            title="Recomeçar conversa"
+            className="p-2 hover:bg-slate-100 rounded-full text-slate-400 hover:text-blue-600 transition-colors"
+          >
+            <RotateCcw size={20} />
+          </button>
+
+          {/* Botão de Fechar */}
+          <button 
+            onClick={onClose}
+            title="Fechar chat"
+            className="p-2 hover:bg-red-50 rounded-full text-slate-400 hover:text-red-500 transition-colors"
+          >
+            <X size={24} />
+          </button>
+        </div>
       </div>
 
       {/* ÁREA DE MENSAGENS */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-6" style={{ backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
+      <div className="flex-1 overflow-y-auto p-4 space-y-6" style={{ backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
         {messages.map((msg) => (
           <motion.div
             key={msg.id}
@@ -245,20 +282,20 @@ export default function ChatBot({ onClose }: ChatBotProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             className={`flex w-full ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
           >
-            <div className={`flex items-end gap-2 max-w-[85%] md:max-w-[60%] ${msg.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+            <div className={`flex items-end gap-2 max-w-[85%] md:max-w-[75%] ${msg.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
               
-              {/* Avatar Pequeno na mensagem */}
+              {/* Avatar Pequeno */}
               {msg.type === 'bot' && (
-                <div className="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 mb-1">
+                <div className="w-6 h-6 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0 mb-1 shadow-sm">
                   <Code2 size={12} className="text-blue-600" />
                 </div>
               )}
 
-              {/* Balão de Mensagem */}
+              {/* Balão */}
               <div className={`px-5 py-3 text-[15px] leading-relaxed shadow-sm relative ${
                 msg.type === 'user' 
-                  ? 'bg-blue-600 text-white rounded-2xl rounded-tr-sm' 
-                  : 'bg-white text-slate-800 border border-slate-100 rounded-2xl rounded-tl-sm'
+                  ? 'bg-blue-600 text-white rounded-2xl rounded-tr-none' 
+                  : 'bg-white text-slate-800 border border-slate-100 rounded-2xl rounded-tl-none'
               }`}>
                 {msg.content}
               </div>
@@ -266,10 +303,10 @@ export default function ChatBot({ onClose }: ChatBotProps) {
           </motion.div>
         ))}
 
-        {/* Loading Indicator (3 bolinhas) */}
+        {/* Typing Indicator */}
         {isTyping && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 ml-8">
-            <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm flex gap-1.5 border border-slate-100">
+            <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-none border border-slate-100 shadow-sm flex gap-1.5">
               <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
               <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-100"></span>
               <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce delay-200"></span>
@@ -280,14 +317,14 @@ export default function ChatBot({ onClose }: ChatBotProps) {
         <div ref={messagesEndRef} className="h-4" />
       </div>
 
-      {/* ÁREA DE INPUT (AnimatePresence) */}
+      {/* ÁREA DE INPUT */}
       <AnimatePresence>
         {isInputVisible && step !== 5 && (
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0 }}
-            className="w-full bg-white/80 backdrop-blur-md border-t border-slate-200 sticky bottom-0 z-20"
+            className="w-full bg-white/90 backdrop-blur-md border-t border-slate-200 sticky bottom-0 z-20 shrink-0"
           >
             {renderInputArea()}
           </motion.div>
