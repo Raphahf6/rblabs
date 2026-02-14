@@ -99,7 +99,7 @@ export default function Home() {
               Vamos calcular quanto sua empresa perde por não ter sistema próprio?
             </h2>
             <p className="text-blue-200 mb-10 text-lg">
-              Agende uma sessão de diagnóstico gratuita. Analisamos seu processo atual e desenhamos a solução ideal (Blueprint).
+              Agende uma sessão de diagnóstico gratuita. Analisamos seu processo atual e desenhamos a solução ideal.
             </p>
             
             <button 
