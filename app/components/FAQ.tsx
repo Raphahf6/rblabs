@@ -16,16 +16,12 @@ export default function FAQ() {
       a: "Como cada operação é única, o investimento varia conforme a complexidade e as tecnologias escolhidas. Não trabalhamos com preços tabelados. Nosso compromisso é desenhar uma solução que se pague (ROI) em poucos meses com a economia gerada ou o aumento de receita. Agende o diagnóstico para recebermos um orçamento exato para o seu desafio."
     },
     {
-      q: "Como funciona o pagamento?",
-      a: "Trabalhamos com um fluxo facilitado: uma entrada para o Blueprint (Diagnóstico e Desenho) e o restante do desenvolvimento parcelado conforme as entregas (Sprints) acontecem. Financiamos o desenvolvimento para não descapitalizar sua operação."
-    },
-    {
       q: "E se eu precisar de suporte depois da entrega?",
       a: "Oferecemos 3 meses de garantia total contra bugs. Após esse período, 90% dos nossos clientes optam pelo nosso contrato de Suporte & Evolução (SLA), garantindo que o sistema esteja sempre atualizado e seguro."
     },
     {
       q: "Vocês atendem empresas fora de São Paulo?",
-      a: "Sim. Nascemos digitais. Todo o processo de imersão, reuniões e treinamentos é feito via vídeo-conferência, permitindo que atendamos clientes em todo o Brasil e no exterior com a mesma qualidade."
+      a: "Sim. Nascemos digitais. Todo o processo de imersão, reuniões e treinamentos são feitos via vídeo-conferência, nos permitindo atender clientes em todo o Brasil e no exterior com a mesma qualidade."
     }
   ];
 
