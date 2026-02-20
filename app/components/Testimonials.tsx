@@ -13,7 +13,7 @@ export default function Testimonials() {
           <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100">
             <Quote className="text-blue-200 mb-4" size={40} />
             <p className="text-slate-600 italic mb-6 text-lg">
-              "O que a R&B Labs fez foi nos devolver o controle da empresa. Antes éramos reféns de um sistema caro e engessado. Hoje temos nossa própria plataforma que vale dinheiro e roda exatamente como precisamos."
+              "O que a R&B Digital fez foi nos devolver o controle da empresa. Antes éramos reféns de um sistema caro e engessado. Hoje temos nossa própria plataforma que vale dinheiro e roda exatamente como precisamos."
             </p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">RM</div>
@@ -28,7 +28,7 @@ export default function Testimonials() {
           <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100">
             <Quote className="text-blue-200 mb-4" size={40} />
             <p className="text-slate-600 italic mb-6 text-lg">
-              "Eu achava que software sob medida era coisa de multinacional. A R&B Labs desenhou uma solução que se pagou em 6 meses só com a redução de erros operacionais e horas extras da equipe."
+              "Eu achava que software sob medida era coisa de multinacional. A R&B Digital desenhou uma solução que se pagou em 6 meses só com a redução de erros operacionais e horas extras da equipe."
             </p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">JP</div>
