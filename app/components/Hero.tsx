@@ -1,9 +1,8 @@
 "use client"
-import { ArrowRight, Code2, Menu, X } from 'lucide-react';
+import { ArrowRight, Code2, Menu, X, TrendingUp, CheckCircle2, Rocket, Bot, BarChart } from 'lucide-react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-// Interface para definir que o Hero aceita uma função de clique
 interface HeroProps {
   onCtaClick: () => void;
 }
@@ -11,175 +10,156 @@ interface HeroProps {
 export default function Hero({ onCtaClick }: HeroProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Função para scroll suave nos links internos
   const scrollToSection = (id: string) => {
     setIsMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative bg-white pt-6 pb-20 overflow-hidden">
-      {/* Background Decorativo Animado */}
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[-50%] right-[-10%] w-[800px] h-[800px] bg-gradient-to-br from-blue-50 to-purple-50 rounded-full blur-3xl opacity-60 -z-10"
-      />
+    <section className="relative bg-[#F8FAFC] pt-6 pb-20 md:pb-32 overflow-hidden font-sans" id="inicio">
+      {/* Background Positivo e Iluminado */}
+      <div className="absolute top-0 inset-x-0 h-full bg-gradient-to-b from-blue-50/50 to-white -z-10"></div>
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-400/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto px-6 max-w-7xl">
         {/* NAV BAR */}
         <nav className="flex justify-between items-center mb-16 md:mb-24 relative z-50">
-          <div className="text-2xl font-bold flex items-center gap-2 text-slate-900 cursor-pointer" onClick={() => scrollToSection('inicio')}>
-            <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white">
-              <Code2 size={20} />
+          <div className="text-2xl font-black flex items-center gap-3 text-slate-900 cursor-pointer tracking-tight" onClick={() => scrollToSection('inicio')}>
+            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-600/20">
+              <Code2 size={22} />
             </div>
-            R&B Labs
+            R&B Digital
           </div>
 
-          {/* Menu Desktop */}
-          <div className="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
-            <button onClick={() => scrollToSection('stats')} className="hover:text-blue-600 transition-colors">Por que ter?</button>
-            <button onClick={() => scrollToSection('cases')} className="hover:text-blue-600 transition-colors">Cases Reais</button>
-            <button onClick={() => scrollToSection('metodologia')} className="hover:text-blue-600 transition-colors">Como funciona</button>
-            <button onClick={() => scrollToSection('sobre')} className="hover:text-blue-600 transition-colors">Quem somos</button>
+          <div className="hidden md:flex gap-8 text-sm font-bold text-slate-600">
+            <button onClick={() => scrollToSection('problemas')} className="hover:text-blue-600 transition-colors">O Cenário</button>
+            <button onClick={() => scrollToSection('metodologia')} className="hover:text-blue-600 transition-colors">Como Ajudamos</button>
+            <button onClick={() => scrollToSection('solucoes')} className="hover:text-blue-600 transition-colors">Soluções</button>
           </div>
 
-          {/* Botão do Menu chama o Modal também */}
-          <button onClick={onCtaClick} className="hidden md:block px-6 py-2 bg-slate-900 text-white text-sm font-bold rounded-lg hover:bg-slate-800 transition-all">
-            Fale Conosco
+          <button onClick={onCtaClick} className="hidden md:block px-6 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-full hover:bg-blue-600 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
+            Agendar Consultoria
           </button>
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-slate-900" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button className="md:hidden text-slate-900 p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </nav>
 
-        {/* Mobile Menu Dropdown */}
-        {isMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute top-20 left-0 w-full bg-white shadow-xl z-50 p-6 flex flex-col gap-4 md:hidden border-b border-gray-100"
-          >
-            <button onClick={() => scrollToSection('problemas')} className="text-left font-semibold text-slate-700 py-2 border-b border-slate-50">Por que ter?</button>
-            <button onClick={() => scrollToSection('cases')} className="text-left font-semibold text-slate-700 py-2 border-b border-slate-50">Cases Reais</button>
-            <button onClick={() => scrollToSection('metodologia')} className="text-left font-semibold text-slate-700 py-2 border-b border-slate-50">Como funciona</button>
-            <button onClick={onCtaClick} className="text-left font-bold text-blue-600 py-2 mt-2">Agendar Diagnóstico</button>
-          </motion.div>
-        )}
-
         {/* HERO CONTENT */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          
+          {/* Lado Esquerdo: A Copy de Crescimento (Growth) */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="max-w-2xl"
           >
-            <div className="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-widest text-blue-700 bg-blue-50 rounded-full border border-blue-100 uppercase">
-              Software House & Enterprise Solutions
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 text-xs font-black tracking-widest text-emerald-700 bg-emerald-50 rounded-full border border-emerald-200 uppercase shadow-sm">
+              <TrendingUp size={16} />
+              Acelerador de Negócios
             </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6">
-              Pare de alugar software. <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                Construa o seu.
-              </span>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1] mb-6 tracking-tight">
+              Pequenos e médios negócios que usam a tecnologia a seu favor crescem <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">3x mais rápido.</span>
             </h1>
-            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-lg">
-              Desenvolvemos sistemas customizados para empresas que superaram as planilhas e cansaram de pagar mensalidades por softwares genéricos que travam sua operação.
+            
+            <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed font-medium">
+              Transforme a operação da sua empresa. A R&B Digital cria automações, sistemas sob medida e agentes de IA para você <strong className="text-slate-800">escalar seus lucros e atender mais clientes</strong> sem precisar inchar a sua equipe.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              {/* BOTÃO PRINCIPAL COM AÇÃO DO MODAL */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={onCtaClick}
-                className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-lg font-semibold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/20"
+                className="flex items-center justify-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-xl font-black text-lg hover:bg-blue-700 transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]"
               >
-                Orçar Meu Sistema
+                Descobrir Meu Potencial
                 <ArrowRight size={20} />
-              </motion.button>
-              
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('cases')}
-                className="flex items-center justify-center gap-2 border border-slate-300 text-slate-700 px-8 py-4 rounded-lg font-semibold hover:bg-slate-50 transition-all"
-              >
-                Ver Cases Reais
               </motion.button>
             </div>
             
-            <div className="mt-8 flex items-center gap-4 text-sm text-slate-500">
-              <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full bg-slate-200 border-2 border-white"></div>
-                <div className="w-8 h-8 rounded-full bg-slate-300 border-2 border-white"></div>
-                <div className="w-8 h-8 rounded-full bg-slate-400 border-2 border-white"></div>
+            {/* Trust Indicators focados em resultado positivo */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 text-sm font-bold text-slate-600">
+              <div className="flex items-center gap-2">
+                <Bot size={18} className="text-blue-500" />
+                Atendimento Automatizado
               </div>
-              <p>Junte-se a empresas que já economizam milhares de reais.</p>
+              <div className="flex items-center gap-2">
+                <Rocket size={18} className="text-emerald-500" />
+                Processos Ágeis
+              </div>
+              <div className="flex items-center gap-2">
+                <BarChart size={18} className="text-purple-500" />
+                Decisões por Dados
+              </div>
             </div>
           </motion.div>
           
-          {/* Ilustração Abstrata Animada (Lado Direito) */}
+          {/* Lado Direito: O Visual do Crescimento e Produtividade */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative hidden md:block"
+            className="relative hidden lg:block perspective-1000"
           >
-            {/* Elemento flutuante Principal */}
-            <motion.div 
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative bg-white rounded-2xl p-6 shadow-2xl border border-slate-100 z-20"
-            >
-              <div className="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <div className="text-xs text-slate-400 ml-auto font-mono">Dashboard v2.0 - Admin</div>
-              </div>
-              
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="h-24 bg-blue-50 rounded-lg w-1/2 flex flex-col justify-center p-4 border border-blue-100">
-                    <span className="text-xs text-blue-500 font-bold uppercase tracking-wider">Economia Anual</span>
-                    <span className="text-3xl font-bold text-blue-900">R$ 124k</span>
-                  </div>
-                  <div className="h-24 bg-purple-50 rounded-lg w-1/2 flex flex-col justify-center p-4 border border-purple-100">
-                    <span className="text-xs text-purple-500 font-bold uppercase tracking-wider">Produtividade</span>
-                    <span className="text-3xl font-bold text-purple-900">+45%</span>
-                  </div>
-                </div>
+             <div className="w-full h-[500px] relative">
                 
-                {/* Gráfico Animado */}
-                <div>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-xs text-slate-400 font-bold">PERFORMANCE EM TEMPO REAL</span>
+                {/* Card de Fundo (Acelerador de Produtividade) */}
+                <div className="absolute top-8 right-0 w-[360px] bg-white rounded-2xl shadow-xl border border-slate-100 p-6 transform rotate-3">
+                  <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
+                        <Rocket size={20} />
+                      </div>
+                      <div>
+                        <p className="font-bold text-slate-800">Produtividade da Equipe</p>
+                        <p className="text-xs text-emerald-600 font-bold">+140 horas salvas/mês</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="h-32 bg-slate-50 rounded-lg w-full flex items-end p-2 gap-2 border border-slate-100">
-                     {[35, 60, 45, 80, 55, 90, 70].map((h, i) => (
-                        <motion.div 
-                          key={i}
-                          initial={{ height: 0 }}
-                          whileInView={{ height: `${h}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: 0.5 + (i * 0.1), ease: "circOut" }}
-                          className="flex-1 bg-slate-200 rounded-t-sm hover:bg-blue-600 transition-colors cursor-pointer"
-                        />
-                     ))}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                      <CheckCircle2 size={18} className="text-emerald-500" />
+                      <span className="text-sm font-bold text-slate-700">Automação de WhatsApp: Ativa</span>
+                    </div>
+                    <div className="flex items-center gap-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                      <CheckCircle2 size={18} className="text-emerald-500" />
+                      <span className="text-sm font-bold text-slate-700">Sincronização de Dados: Ativa</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-            
-            {/* Elemento decorativo atrás (Sombra/Contexto) */}
-            <div className="absolute top-10 -right-10 w-full h-full bg-slate-900 rounded-2xl -z-10 opacity-5 transform rotate-6 scale-95"></div>
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500 rounded-full blur-3xl opacity-20 -z-10"></div>
+
+                {/* Card Frontal (O Gráfico de Crescimento) */}
+                <div className="absolute bottom-8 left-4 w-[380px] bg-slate-900 rounded-2xl shadow-2xl border border-slate-800 p-7 transform -rotate-2 z-10">
+                  <div className="absolute -top-4 -left-4 bg-blue-600 text-white text-xs font-black px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 uppercase tracking-wider">
+                    <TrendingUp size={16} />
+                    Crescimento 3x
+                  </div>
+                  
+                  <div className="mt-4 mb-6">
+                    <p className="text-sm font-bold text-slate-400 mb-1">Faturamento Projetado</p>
+                    <div className="flex items-end gap-3">
+                      <p className="text-4xl font-black text-white">R$ 184k</p>
+                      <span className="text-sm font-bold text-emerald-400 mb-1 bg-emerald-400/10 px-2 py-0.5 rounded flex items-center gap-1">
+                        <TrendingUp size={14} /> +312%
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Gráfico Visual Simplificado */}
+                  <div className="h-32 flex items-end gap-2 pt-4 border-t border-slate-800">
+                    <div className="w-full bg-slate-800 rounded-t-md h-[20%] relative group hover:bg-slate-700 transition-colors"><div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 text-xs text-white">Q1</div></div>
+                    <div className="w-full bg-slate-800 rounded-t-md h-[35%] relative group hover:bg-slate-700 transition-colors"><div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 text-xs text-white">Q2</div></div>
+                    <div className="w-full bg-slate-800 rounded-t-md h-[60%] relative group hover:bg-blue-600/50 transition-colors"><div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 text-xs text-white">Q3</div></div>
+                    <div className="w-full bg-gradient-to-t from-blue-600 to-emerald-400 rounded-t-md h-[100%] shadow-[0_0_15px_rgba(52,211,153,0.3)] relative group"><div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-emerald-400">Hoje</div></div>
+                  </div>
+                </div>
+
+             </div>
           </motion.div>
         </div>
       </div>

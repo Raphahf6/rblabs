@@ -1,75 +1,74 @@
 "use client"
 import { useState } from 'react';
-import { Database, Bot, LayoutDashboard, Smartphone, Users, DollarSign, TrendingUp, Bell, Search, Menu, Zap, MessageSquare, Activity } from 'lucide-react';
+import { Bot, CalendarCheck, Users, Zap, TrendingUp, Bell, Search, Menu, MessageSquare, Clock, CheckSquare, Rocket } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Solutions() {
-  // Estado para controlar qual item está selecionado
   const [activeTab, setActiveTab] = useState(0);
 
-  // Array consolidado com os produtos e seus respectivos dados mockados
+  // Array focado 100% em PMEs (O que vende fácil)
   const solutions = [
     {
-      title: "Sistemas ERP & CRM Customizados",
-      desc: "Centralize clientes, vendas e processos em um painel único. Relatórios sob medida para decisões estratégicas.",
-      icon: <LayoutDashboard size={24} />,
-      mock: {
-        kpi1: { label: "Receita Mensal", value: "R$ 45.200", badge: "+12%", badgeColor: "text-green-600 bg-green-50" },
-        kpi2: { label: "Leads Ativos", value: "142", badge: "Novo Recorde", badgeColor: "text-blue-600 bg-blue-50" },
-        feedTitle: "Vendas em Tempo Real",
-        feedIcon: <TrendingUp size={16} className="text-blue-500" />,
-        feed: [
-          { type: "Venda", text: "Novo pedido #8291", time: "2 min", color: "bg-green-100 text-green-700" },
-          { type: "Lead", text: "Novo Lead: Clínica Santa Clara", time: "5 min", color: "bg-blue-100 text-blue-700" },
-          { type: "Alerta", text: "Estoque baixo: Item #402", time: "12 min", color: "bg-orange-100 text-orange-700" },
-        ]
-      }
-    },
-    {
-      title: "Agentes de IA & Chatbots",
-      desc: "Assistentes virtuais inteligentes que atendem, qualificam leads e agendam reuniões via WhatsApp 24 horas por dia.",
+      title: "Atendimento Automático (IA no WhatsApp)",
+      desc: "Robôs inteligentes que atendem seus clientes em 3 segundos, tiram dúvidas e fecham vendas 24 horas por dia.",
       icon: <Bot size={24} />,
       mock: {
-        kpi1: { label: "Conversas (IA)", value: "1.284", badge: "Hoje", badgeColor: "text-purple-600 bg-purple-50" },
-        kpi2: { label: "Tempo de Resposta", value: "1.2s", badge: "Ultrarrápido", badgeColor: "text-emerald-600 bg-emerald-50" },
+        kpi1: { label: "Conversas Hoje", value: "342", badge: "Sem fila", badgeColor: "text-green-600 bg-green-50" },
+        kpi2: { label: "Tempo de Resposta", value: "1.2s", badge: "Ultrarrápido", badgeColor: "text-purple-600 bg-purple-50" },
         feedTitle: "Interações da IA",
         feedIcon: <MessageSquare size={16} className="text-purple-500" />,
         feed: [
-          { type: "Chat", text: "IA agendou reunião c/ Marcos", time: "Agora", color: "bg-purple-100 text-purple-700" },
-          { type: "Dúvida", text: "IA respondeu sobre preços", time: "1 min", color: "bg-blue-100 text-blue-700" },
-          { type: "Lead", text: "Contato qualificado (Score: 9/10)", time: "8 min", color: "bg-green-100 text-green-700" },
+          { type: "Venda", text: "IA fechou pedido #442", time: "Agora", color: "bg-green-100 text-green-700" },
+          { type: "Dúvida", text: "IA respondeu sobre horários", time: "2 min", color: "bg-blue-100 text-blue-700" },
+          { type: "Lead", text: "Cliente pediu orçamento", time: "5 min", color: "bg-orange-100 text-orange-700" },
         ]
       }
     },
     {
-      title: "Aplicativos & SaaS",
-      desc: "Ferramentas mobile e web escaláveis para sua equipe de campo, franqueados ou para seus clientes finais.",
-      icon: <Smartphone size={24} />,
+      title: "Agendamento Inteligente",
+      desc: "Acabe com os buracos na agenda. Um portal próprio onde o cliente marca o horário sozinho e recebe lembretes no WhatsApp.",
+      icon: <CalendarCheck size={24} />,
       mock: {
-        kpi1: { label: "Usuários Ativos", value: "8.402", badge: "+340 Hoje", badgeColor: "text-blue-600 bg-blue-50" },
-        kpi2: { label: "Uptime (Servidor)", value: "99.9%", badge: "Estável", badgeColor: "text-green-600 bg-green-50" },
-        feedTitle: "Log do Sistema",
-        feedIcon: <Activity size={16} className="text-orange-500" />,
+        kpi1: { label: "Agendados Hoje", value: "28", badge: "Agenda Cheia", badgeColor: "text-blue-600 bg-blue-50" },
+        kpi2: { label: "Taxa de Faltas", value: "1.5%", badge: "Queda de 80%", badgeColor: "text-green-600 bg-green-50" },
+        feedTitle: "Movimentação da Agenda",
+        feedIcon: <Clock size={16} className="text-blue-500" />,
         feed: [
-          { type: "Login", text: "Novo acesso via Apple ID", time: "1 min", color: "bg-slate-100 text-slate-700" },
-          { type: "Sync", text: "Sincronização offline concluída", time: "3 min", color: "bg-blue-100 text-blue-700" },
-          { type: "Deploy", text: "Atualização v2.1 aplicada", time: "1h", color: "bg-orange-100 text-orange-700" },
+          { type: "Novo", text: "Ana M. agendou para 14h", time: "1 min", color: "bg-green-100 text-green-700" },
+          { type: "Alerta", text: "Lembrete enviado p/ Carlos", time: "10 min", color: "bg-blue-100 text-blue-700" },
+          { type: "Reagendou", text: "Marcos mudou para amanhã", time: "1h", color: "bg-yellow-100 text-yellow-700" },
         ]
       }
     },
     {
-      title: "Automação & APIs",
-      desc: "Fazemos seus sistemas conversarem. Elimine o trabalho de copiar dados entre o financeiro, CRM e WhatsApp.",
-      icon: <Database size={24} />,
+      title: "Funil de Vendas e CRM Simples",
+      desc: "Diga adeus às planilhas perdidas. Acompanhe todos os orçamentos, negociações e metas batidas em um painel visual e fácil de usar.",
+      icon: <Users size={24} />,
       mock: {
-        kpi1: { label: "Tarefas Automatizadas", value: "15k", badge: "Neste mês", badgeColor: "text-emerald-600 bg-emerald-50" },
-        kpi2: { label: "Horas Economizadas", value: "120h", badge: "Equipe Comercial", badgeColor: "text-blue-600 bg-blue-50" },
-        feedTitle: "Webhooks & Gatilhos",
-        feedIcon: <Zap size={16} className="text-yellow-500" />,
+        kpi1: { label: "Vendas no Mês", value: "R$ 45k", badge: "Meta Batida", badgeColor: "text-emerald-600 bg-emerald-50" },
+        kpi2: { label: "Orçamentos Abertos", value: "12", badge: "R$ 15k travados", badgeColor: "text-orange-600 bg-orange-50" },
+        feedTitle: "Atividade Comercial",
+        feedIcon: <TrendingUp size={16} className="text-emerald-500" />,
         feed: [
-          { type: "API", text: "Pagamento Stripe recebido", time: "Segundos", color: "bg-green-100 text-green-700" },
-          { type: "Sync", text: "Nota Fiscal emitida no ERP", time: "4 min", color: "bg-blue-100 text-blue-700" },
-          { type: "Trigger", text: "Mensagem de Boas-vindas enviada", time: "15 min", color: "bg-yellow-100 text-yellow-700" },
+          { type: "Ganho", text: "Contrato assinado: Clínica Sul", time: "Agora", color: "bg-emerald-100 text-emerald-700" },
+          { type: "Follow-up", text: "Retornar contato da Padaria", time: "20 min", color: "bg-orange-100 text-orange-700" },
+          { type: "Proposta", text: "Orçamento enviado p/ João", time: "2h", color: "bg-blue-100 text-blue-700" },
+        ]
+      }
+    },
+    {
+      title: "Automação de Tarefas Manuais",
+      desc: "O trabalho chato de 'copiar e colar' dados agora é feito por robôs. Nós conectamos seu financeiro, seu site e seu WhatsApp.",
+      icon: <Zap size={24} />,
+      mock: {
+        kpi1: { label: "Tarefas Executadas", value: "1.250", badge: "Hoje", badgeColor: "text-blue-600 bg-blue-50" },
+        kpi2: { label: "Horas Poupadas", value: "45h", badge: "Nesta semana", badgeColor: "text-purple-600 bg-purple-50" },
+        feedTitle: "Robôs em Ação",
+        feedIcon: <Rocket size={16} className="text-purple-500" />,
+        feed: [
+          { type: "Sync", text: "Nota fiscal emitida sozinha", time: "Segundos", color: "bg-green-100 text-green-700" },
+          { type: "Gatilho", text: "Boas-vindas enviada no Zap", time: "4 min", color: "bg-purple-100 text-purple-700" },
+          { type: "Planilha", text: "Relatório diário atualizado", time: "15 min", color: "bg-blue-100 text-blue-700" },
         ]
       }
     }
@@ -82,14 +81,14 @@ export default function Solutions() {
         {/* LADO ESQUERDO: TEXTO E ABAS */}
         <div className="md:w-1/2">
           <div className="inline-flex items-center gap-2 text-blue-600 font-bold mb-4 uppercase tracking-wider text-sm">
-            <Zap size={16} />
-            Nosso Portfólio
+            <CheckSquare size={16} />
+            Soluções Práticas
           </div>
-          <h2 className="text-4xl font-bold text-slate-900 mb-6">
-            O que construímos na <br/><span className="text-blue-600">R&B Labs</span>
+          <h2 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight">
+            Ferramentas que colocam <br/><span className="text-blue-600">dinheiro no seu bolso</span>
           </h2>
-          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-            Nossa especialidade é resolver problemas complexos com código limpo e IA. Não usamos templates prontos; desenhamos a arquitetura ideal para sua necessidade.
+          <p className="text-lg text-slate-600 mb-8 leading-relaxed font-medium">
+            Nós não criamos sistemas complicados que sua equipe não vai usar. Desenvolvemos soluções diretas ao ponto para resolver os maiores gargalos do seu dia a dia.
           </p>
           
           {/* Lista de Soluções (Funciona como Menu) */}
@@ -148,10 +147,10 @@ export default function Solutions() {
             <div className="flex h-[400px] relative">
               {/* 2. Sidebar Fixa */}
               <div className="w-16 bg-slate-900 py-6 flex flex-col items-center gap-6 z-10">
-                <div className={`transition-colors ${activeTab === 0 ? 'text-blue-400' : 'text-slate-500'}`}><LayoutDashboard size={20} /></div>
-                <div className={`transition-colors ${activeTab === 1 ? 'text-purple-400' : 'text-slate-500'}`}><Bot size={20} /></div>
-                <div className={`transition-colors ${activeTab === 2 ? 'text-orange-400' : 'text-slate-500'}`}><Smartphone size={20} /></div>
-                <div className={`transition-colors ${activeTab === 3 ? 'text-emerald-400' : 'text-slate-500'}`}><Database size={20} /></div>
+                <div className={`transition-colors ${activeTab === 0 ? 'text-green-400' : 'text-slate-500'}`}><Bot size={20} /></div>
+                <div className={`transition-colors ${activeTab === 1 ? 'text-blue-400' : 'text-slate-500'}`}><CalendarCheck size={20} /></div>
+                <div className={`transition-colors ${activeTab === 2 ? 'text-emerald-400' : 'text-slate-500'}`}><Users size={20} /></div>
+                <div className={`transition-colors ${activeTab === 3 ? 'text-purple-400' : 'text-slate-500'}`}><Zap size={20} /></div>
                 <div className="mt-auto text-slate-600 hover:text-white transition-colors"><Menu size={20} /></div>
               </div>
 

@@ -1,119 +1,139 @@
 "use client"
-import { ClipboardList, PenTool, Code2, Rocket, CheckCircle2 } from 'lucide-react';
+import { Search, Map, Cpu, Rocket, ArrowDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Methodology() {
   const steps = [
     {
-      number: "01",
-      title: "Imersão e Diagnóstico",
-      icon: <ClipboardList size={28} />,
-      desc: "Não adivinhamos nada. Mergulhamos na sua operação para entender os gargalos, as planilhas ocultas e onde o dinheiro está sendo perdido.",
-      deliverable: "Entregável: Relatório de Viabilidade Técnica."
+      icon: <Search size={28} />,
+      title: "1. Diagnóstico de Gargalos",
+      desc: "Tudo começa com uma conversa rápida. Mapeamos onde sua empresa está perdendo tempo, dinheiro ou vendas. É um Raio-X honesto da sua operação atual.",
+      color: "text-blue-600",
+      bg: "bg-blue-100",
+      border: "border-blue-200"
     },
     {
-      number: "02",
-      title: "Arquitetura e Prototipagem",
-      icon: <PenTool size={28} />,
-      desc: "Desenhamos a solução visualmente antes de escrever uma linha de código. Você aprova o design e o fluxo de telas.",
-      deliverable: "Entregável: Protótipo Navegável."
+      icon: <Map size={28} />,
+      title: "2. O Plano de Ação (Roadmap)",
+      desc: "Avaliamos a melhor rota. Se existir um software pronto (SaaS) que resolva seu problema de forma barata, nós o indicamos. Não empurramos código desnecessário.",
+      color: "text-purple-600",
+      bg: "bg-purple-100",
+      border: "border-purple-200"
     },
     {
-      number: "03",
-      title: "Desenvolvimento Ágil",
-      icon: <Code2 size={28} />,
-      desc: "Construção do software em ciclos (Sprints). A cada 15 dias, você vê uma nova funcionalidade rodando. Nada de caixas pretas.",
-      deliverable: "Entregável: Acesso ao Ambiente de Homologação."
+      icon: <Cpu size={28} />,
+      title: "3. Integração ou Construção",
+      desc: "Com o plano aprovado, colocamos a mão na massa. Conectamos suas ferramentas atuais (APIs), implantamos Agentes de IA ou construímos o sistema customizado do zero.",
+      color: "text-orange-600",
+      bg: "bg-orange-100",
+      border: "border-orange-200"
     },
     {
-      number: "04",
-      title: "Treinamento e Go-Live",
       icon: <Rocket size={28} />,
-      desc: "Não apenas entregamos o login. Treinamos sua equipe, configuramos o servidor e acompanhamos a primeira semana de uso intenso.",
-      deliverable: "Entregável: Manual do Usuário e Garantia de 3 meses."
+      title: "4. Operação em Piloto Automático",
+      desc: "Entregamos a tecnologia rodando, treinamos a sua equipe e garantimos suporte contínuo. Sua empresa passa a operar de forma inteligente e escalável.",
+      color: "text-emerald-600",
+      bg: "bg-emerald-100",
+      border: "border-emerald-200"
     }
   ];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden" id="metodologia">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section className="py-24 bg-[#F8FAFC]" id="metodologia">
+      <div className="container mx-auto px-6 max-w-5xl">
         <div className="text-center mb-20">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-3 py-1 mb-4 text-sm font-bold tracking-wider text-blue-600 uppercase bg-blue-50 rounded-full"
+            className="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-wider text-blue-700 uppercase bg-blue-100/50 rounded-full border border-blue-200"
           >
-            Processo Transparente
+            Nosso Método
           </motion.div>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-            Do problema à solução em 4 etapas
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+            Não empurramos código. <br className="hidden md:block" />
+            <span className="text-blue-600">Nós prescrevemos soluções.</span>
           </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto text-lg">
-            Eliminamos a incerteza do desenvolvimento de software. Nosso método garante que 
-            o projeto fique dentro do prazo, do orçamento e da expectativa.
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+            Atuamos como seu parceiro estratégico de tecnologia. O foco não é vender um sistema caro, é resolver o seu problema da forma mais eficiente e lucrativa possível.
           </p>
         </div>
 
         <div className="relative">
-          {/* Linha conectora (Desktop) */}
-          <div className="hidden md:block absolute top-10 left-0 w-full h-1 bg-slate-100 -z-10">
-            <div className="h-full bg-gradient-to-r from-blue-600 to-purple-600 w-full opacity-20"></div>
-          </div>
+          {/* Linha conectora vertical (Desktop) */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-slate-200 -translate-x-1/2 rounded-full"></div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="space-y-12 md:space-y-0 relative">
             {steps.map((step, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.2, duration: 0.5 }}
-                className="relative bg-white pt-4 md:pt-0"
-              >
-                {/* Icone Flutuante */}
-                <div className="w-20 h-20 mx-auto md:mx-0 bg-white border-4 border-slate-50 rounded-full flex items-center justify-center text-blue-600 shadow-lg mb-6 relative z-10 group hover:scale-110 transition-transform duration-300">
-                  {step.icon}
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center text-sm font-bold border-2 border-white">
-                    {step.number}
-                  </div>
-                </div>
-
-                <h3 className="text-xl font-bold text-slate-900 mb-3 text-center md:text-left">
-                  {step.title}
-                </h3>
+              <div key={idx} className="relative md:h-48">
                 
-                <p className="text-slate-600 leading-relaxed text-sm mb-4 text-center md:text-left min-h-[80px]">
-                  {step.desc}
-                </p>
-
-                <div className="bg-slate-50 p-3 rounded-lg border border-slate-100 flex gap-2 items-start">
-                  <CheckCircle2 size={16} className="text-green-500 mt-0.5 shrink-0" />
-                  <span className="text-xs font-semibold text-slate-700">
-                    {step.deliverable}
-                  </span>
-                </div>
-
-                {/* Linha conectora vertical (Mobile) */}
+                {/* Linha conectora mobile */}
                 {idx !== steps.length - 1 && (
-                  <div className="md:hidden absolute top-20 left-1/2 w-0.5 h-full bg-slate-200 -z-10 -ml-[1px]"></div>
+                  <div className="md:hidden absolute left-8 top-16 bottom-[-3rem] w-0.5 bg-slate-200"></div>
                 )}
-              </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 20, x: idx % 2 === 0 ? -50 : 50 }}
+                  whileInView={{ opacity: 1, y: 0, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className={`flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-0 ${
+                    idx % 2 === 0 ? 'md:justify-start' : 'md:justify-end'
+                  } w-full`}
+                >
+                  
+                  {/* Card de Conteúdo */}
+                  <div className={`md:w-[45%] bg-white p-8 rounded-2xl border ${step.border} shadow-sm hover:shadow-md transition-shadow relative z-10 w-full ml-16 md:ml-0`}>
+                    
+                    {/* Número Flutuante no Mobile */}
+                    <div className="md:hidden absolute -left-16 top-6 w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center font-black text-slate-300 z-20">
+                      {idx + 1}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-slate-900 mb-3 flex items-center gap-3">
+                      <span className={`p-2 rounded-lg ${step.bg} ${step.color} shrink-0`}>
+                        {step.icon}
+                      </span>
+                      {step.title}
+                    </h3>
+                    <p className="text-slate-600 font-medium leading-relaxed text-sm">
+                      {step.desc}
+                    </p>
+                  </div>
+
+                  {/* Círculo Central (Desktop) */}
+                  <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white border-4 border-slate-100 items-center justify-center font-black text-slate-400 z-20 shadow-sm">
+                    {idx + 1}
+                  </div>
+
+                </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Call to Action Secundário */}
+        {/* Resumo da Metodologia */}
         <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="mt-20 text-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="mt-20 bg-slate-900 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
         >
-          <div className="inline-flex items-center gap-4 bg-slate-900 text-white px-6 py-3 rounded-lg shadow-lg">
-            <span className="text-sm font-medium">Você acompanha tudo em tempo real pelo nosso portal do cliente.</span>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/20 blur-[100px] rounded-full pointer-events-none"></div>
+          
+          <div className="relative z-10">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              A tecnologia deve trabalhar para você, e não o contrário.
+            </h3>
+            <p className="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
+              Seja integrando um software de prateleira ou construindo uma IA do zero, nosso objetivo é um só: reduzir seus custos e aumentar seus lucros.
+            </p>
+            <a href="#contato" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg transform hover:-translate-y-1">
+              Agendar minha Consultoria Gratuita
+            </a>
           </div>
         </motion.div>
+
       </div>
     </section>
   );

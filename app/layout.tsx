@@ -1,45 +1,57 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// Fonte para os textos gerais (limpa, moderna e geométrica)
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter",
+  display: 'swap',
+});
 
-// URL final do seu site (mude quando tiver o domínio)
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.rblabs.com.br";
+// Fonte para os Títulos (elegante, culta, estilo consultoria enterprise)
+const playfair = Playfair_Display({ 
+  subsets: ["latin"], 
+  variable: "--font-playfair",
+  display: 'swap',
+});
+
+// URL final do seu site (mude quando tiver o domínio oficial)
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.rbdigital.com.br";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "R&B Labs | Software House & Sistemas Sob Medida",
-    template: "%s | R&B Labs"
+    default: "R&B Digital | Consultoria em Transformação Digital e IA",
+    template: "%s | R&B Digital"
   },
-  description: "Desenvolvimento de software corporativo, criação de SaaS, automação de processos e aplicativos. Transforme planilhas em sistemas de alta performance.",
+  description: "Aceleramos pequenas e médias empresas através de Inteligência Artificial, automação de processos e engenharia de software sob medida. Escale sua operação.",
   keywords: [
-    "Software House", 
-    "Desenvolvimento de Sistemas", 
-    "Criar SaaS", 
-    "Automação Comercial", 
-    "App para empresas", 
-    "Consultoria de TI", 
-    "Sistema de Gestão Customizado"
+    "Transformação Digital", 
+    "Consultoria de Tecnologia", 
+    "Inteligência Artificial para Empresas", 
+    "Automação de Processos", 
+    "Engenharia de Software", 
+    "Integração de Sistemas", 
+    "Agentes de IA"
   ],
   authors: [{ name: "Raphael", url: "https://www.linkedin.com/in/raphaml5" }],
-  creator: "R&B Labs",
+  creator: "R&B Digital",
   
   // Configuração para WhatsApp, LinkedIn, Facebook (Open Graph)
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: BASE_URL,
-    title: "R&B Labs | Pare de alugar software. Construa o seu.",
-    description: "Sua empresa merece um sistema próprio. Desenvolvimento ágil, código escalável e foco no ROI. Agende um diagnóstico.",
-    siteName: "R&B Labs",
+    title: "R&B Digital | Aceleração e Transformação de Negócios",
+    description: "Negócios que operam com tecnologia sob medida crescem 5x mais rápido. Agende um mapeamento da sua operação.",
+    siteName: "R&B Digital",
     images: [
       {
-        url: "/opengraph-image.png", // A imagem que criamos no passo 1
+        url: "/opengraph-image.png", // Certifique-se de ter essa imagem na pasta /public
         width: 1200,
         height: 630,
-        alt: "R&B Labs Hero Section",
+        alt: "R&B Digital - Consultoria Tecnológica",
       },
     ],
   },
@@ -65,7 +77,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" className="scroll-smooth">
-      <body className={`${inter.className} bg-slate-50 text-slate-900 antialiased`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans bg-zinc-50 text-zinc-900 antialiased`}>
         {children}
       </body>
     </html>

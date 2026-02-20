@@ -1,140 +1,127 @@
-import { ArrowRight, TrendingUp, Clock, DollarSign, Calendar, ShoppingBag,Clapperboard } from 'lucide-react';
+"use client"
+import { MessageCircle, CalendarClock, TrendingUp, ArrowRight, Quote } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function CaseStudies() {
   const cases = [
     {
-      category: "Food Service & Delivery",
-      title: "Hamburgueria Artesanal : Do App de Entrega ao PWA Próprio",
-      icon: <ShoppingBag size={24} className="text-orange-500" />,
-      scenario: "Uma hamburgueria artesanal de alto volume dependia 100% de apps de entrega. O resultado? Taxas de 27% comendo todo o lucro e zero acesso aos dados dos clientes.",
-      solution: "Desenvolvemos um Web App de Pedidos Próprio (PWA), integrado diretamente à impressora da cozinha e com disparo automático de WhatsApp para status do pedido.",
-      results: [
-        "Economia de R$ 4.500/mês em taxas de aplicativos.",
-        "Aumento de 20% na recompra usando campanhas de CRM próprio.",
-        "Tempo de despacho reduzido em 5 minutos por pedido."
-      ]
+      niche: "Delivery / Alimentação",
+      title: "O Fim do Caos na Sexta-feira à Noite",
+      icon: <MessageCircle size={24} className="text-green-600" />,
+      before: "A equipe demorava 40 minutos para responder os clientes no WhatsApp em dias de pico. O cliente desistia, pedia no concorrente e a empresa perdia milhares de reais em vendas ignoradas.",
+      after: "Implementamos um Agente de IA no WhatsApp. Agora, o robô atende vários clientes ao mesmo tempo, tira dúvidas do cardápio e manda o pedido formatado para a cozinha.",
+      result: "+35% de aumento nas vendas (recuperação de clientes perdidos por demora).",
+      color: "bg-green-50 border-green-200"
     },
     {
-      category: "Saúde & Estética",
-      title: "Clínica BellaVitta: O Fim do 'Bolo' na Agenda",
-      icon: <Calendar size={24} className="text-pink-500" />,
-      scenario: "A clínica tinha 3 recepcionistas, mas o telefone não parava. Mesmo assim, 30% dos pacientes faltavam sem avisar (no-show), gerando um prejuízo de R$ 15k/mês em horas ociosas.",
-      solution: "Criamos um Sistema de Agendamento Inteligente que cobra sinal antecipado via Pix e envia confirmações automáticas com IA via WhatsApp.",
-      results: [
-        "Redução drástica de no-show: de 30% para 2%.",
-        "Uma recepcionista realocada para o time de vendas.",
-        "Agenda 100% preenchida com fila de espera automatizada."
-      ]
+      niche: "Clínica de Estética",
+      title: "Agenda Lotada e Sem Furos",
+      icon: <CalendarClock size={24} className="text-purple-600" />,
+      before: "A recepcionista passava o dia todo respondendo 'Qual o valor do procedimento?' no WhatsApp. A agenda era no papel e a taxa de clientes que faltavam (no-show) passava de 20%.",
+      after: "Criamos um sistema próprio de agendamento online integrado ao WhatsApp. O cliente agenda sozinho e recebe lembretes automáticos 24h antes da consulta.",
+      result: "Taxa de faltas caiu para quase zero e a recepcionista virou uma vendedora.",
+      color: "bg-purple-50 border-purple-200"
     },
     {
-      category: "Logística & Estoque",
-      title: "Distribuidora Ágil: Adeus Planilhas Travadas",
-      icon: <TrendingUp size={24} className="text-blue-500" />,
-      scenario: "O controle de estoque era feito em um Excel gigante de 50mb que travava todo dia. Vendedores vendiam produtos sem estoque e o faturamento levava dias para fechar.",
-      solution: "Desenvolvimento de um ERP Customizado em Nuvem, com painéis em tempo real para vendedores e baixa automática de estoque via leitura de QR Code.",
-      results: [
-        "Zero vendas canceladas por falta de produto.",
-        "Faturamento fechado em tempo real (antes demorava 3 dias).",
-        "Eliminação total do Excel na operação central."
-      ]
-    },
-
-    {
-      category: "Media & Creator Economy",
-      title: "Agência ViralScale: Escala Industrial de Conteúdo",
-      icon: <Clapperboard size={24} className="text-purple-500" />,
-      scenario: "Uma agência de cortes para TikTok/Reels tinha 5 editores sobrecarregados. 70% do tempo era gasto em tarefas repetitivas: cortar silêncios (jumpcuts) e criar legendas manuais.",
-      solution: "Desenvolvemos um Pipeline de Vídeo Automatizado (Python + FFmpeg + OpenAI Whisper). O sistema ingere o vídeo bruto, remove silêncios, gera legendas sincronizadas e exporta prévias em 3 formatos.",
-      results: [
-        "Capacidade de produção aumentou de 10 para 45 vídeos/dia.",
-        "Redução de custo: O trabalho de 3 editores júnior agora é feito pelo bot.",
-        "Padronização total da identidade visual nos cortes."
-      ]
+      niche: "Prestação de Serviços",
+      title: "Aposentando as 15 Planilhas",
+      icon: <TrendingUp size={24} className="text-blue-600" />,
+      before: "O dono da empresa passava o fim de semana inteiro cruzando dados de planilhas diferentes para tentar entender se a empresa deu lucro ou prejuízo no mês.",
+      after: "Desenvolvemos um Painel de Gestão (Dashboard) único e sob medida. Todos os dados da operação, do financeiro ao estoque, atualizados em tempo real na tela do celular.",
+      result: "O dono recuperou seus finais de semana e agora toma decisões baseadas em dados reais.",
+      color: "bg-blue-50 border-blue-200"
     }
   ];
 
   return (
-    <section className="py-24 bg-slate-50" id="cases">
+    <section className="py-24 bg-[#F5F7FB]" id="cases">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4">Histórias de Transformação</h2>
-          <p className="text-slate-600 max-w-2xl mx-auto">
-            Não vendemos apenas código. Vendemos eficiência operacional e lucro. 
-            Veja como resolvemos problemas reais de negócios como o seu.
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-wider text-blue-700 uppercase bg-blue-100/50 rounded-full border border-blue-200"
+          >
+            Histórias Reais
+          </motion.div>
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+            Tirando empresas do caos <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+              e preparando para escalar
+            </span>
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto font-medium">
+            Veja como transformamos negócios locais comuns em operações inteligentes, rápidas e lucrativas através de tecnologia acessível.
           </p>
         </div>
 
-        <div className="space-y-12">
+        <div className="grid md:grid-cols-3 gap-8">
           {cases.map((item, idx) => (
-            <div key={idx} className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg transition-all duration-300">
-              <div className="flex flex-col md:flex-row">
-                
-                {/* Lado Esquerdo: O Contexto Visual/Categoria */}
-                <div className="md:w-1/3 bg-slate-900 p-8 flex flex-col justify-between relative overflow-hidden">
-                  <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 bg-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6 backdrop-blur-sm border border-white/10">
-                      {item.icon}
-                      {item.category}
-                    </div>
-                    <h3 className="text-2xl font-bold text-white leading-tight">
-                      {item.title}
-                    </h3>
-                  </div>
-                  
-                  {/* Decoração de fundo */}
-                  <div className="absolute bottom-0 right-0 opacity-10 transform translate-x-1/4 translate-y-1/4">
-                    <div className="w-48 h-48 bg-blue-500 rounded-full blur-3xl"></div>
-                  </div>
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col"
+            >
+              {/* Header do Card */}
+              <div className={`${item.color} px-6 py-4 flex items-center justify-between border-b`}>
+                <span className="text-xs font-black uppercase tracking-widest text-slate-700">
+                  {item.niche}
+                </span>
+                <div className="bg-white p-2 rounded-lg shadow-sm">
+                  {item.icon}
                 </div>
-
-                {/* Lado Direito: A História (Storytelling) */}
-                <div className="md:w-2/3 p-8 md:p-12">
-                  <div className="mb-8">
-                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">O Desafio</h4>
-                    <p className="text-slate-600 text-lg leading-relaxed">
-                      "{item.scenario}"
-                    </p>
-                  </div>
-
-                  <div className="mb-8 p-6 bg-blue-50/50 rounded-xl border border-blue-100">
-                    <h4 className="text-sm font-bold text-blue-600 uppercase tracking-wider mb-2 flex items-center gap-2">
-                      <Code2 size={16} /> A Solução R&B Labs
-                    </h4>
-                    <p className="text-slate-700 font-medium">
-                      {item.solution}
-                    </p>
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-bold text-green-600 uppercase tracking-wider mb-4 flex items-center gap-2">
-                      <TrendingUp size={16} /> Resultados Reais
-                    </h4>
-                    <ul className="grid sm:grid-cols-2 gap-4">
-                      {item.results.map((res, rIdx) => (
-                        <li key={rIdx} className="flex items-start gap-3 text-slate-600 text-sm">
-                          <div className="mt-1 min-w-[6px] h-[6px] rounded-full bg-green-500"></div>
-                          {res}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
               </div>
-            </div>
+
+              {/* Corpo do Card */}
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="text-xl font-bold text-slate-900 mb-6 leading-tight">
+                  {item.title}
+                </h3>
+                
+                <div className="relative pl-4 mb-6">
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-red-400 rounded-full"></div>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">O Problema</p>
+                  <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                    {item.before}
+                  </p>
+                </div>
+
+                <div className="relative pl-4 mb-8">
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-full"></div>
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">A Solução R&B</p>
+                  <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                    {item.after}
+                  </p>
+                </div>
+
+                {/* Resultado Destacado */}
+                <div className="mt-auto bg-slate-50 p-4 rounded-xl border border-slate-100 flex gap-3 items-start">
+                  <Quote size={24} className="text-slate-300 shrink-0 rotate-180" />
+                  <p className="text-sm font-bold text-slate-800 leading-snug">
+                    {item.result}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <a href="#contato" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-800 transition-colors">
-            Quero escrever a próxima história de sucesso da minha empresa
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <a href="#contato" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-700 transition-colors">
+            Quero esse mesmo resultado na minha empresa
             <ArrowRight size={20} />
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-
-// Import necessário para o ícone Code2 que usei dentro do componente
-import { Code2 } from 'lucide-react';

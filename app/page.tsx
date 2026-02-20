@@ -90,25 +90,31 @@ export default function Home() {
       {/* 11. TECH STACK (Autoridade Técnica) */}
       <TechStack />
       
-      {/* 12. CTA FINAL (Chamada para Ação Definitiva) */}
-      <section id="contato" className="bg-blue-900 py-24 text-center px-4 relative overflow-hidden">
+      {/* CTA FINAL (Chamada para Ação PME) */}
+      <section id="contato" className="bg-slate-900 py-24 text-center px-4 relative overflow-hidden">
+        {/* Background Patterns */}
         <div className="absolute inset-0 bg-[url('/grid-pattern.png')] opacity-10"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600 rounded-full blur-[120px] opacity-20"></div>
+        
         <FadeIn direction="up">
-          <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Vamos calcular quanto sua empresa perde por não ter sistema próprio?
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">
+              O mundo mudou. Quem não usa IA e automação, vai ficar para trás.
             </h2>
-            <p className="text-blue-200 mb-10 text-lg">
-              Agende uma sessão de diagnóstico gratuita. Analisamos seu processo atual e desenhamos a solução ideal.
+            <p className="text-slate-300 mb-10 text-lg leading-relaxed">
+              Não espere seu concorrente roubar seus clientes para tomar uma atitude. Agende um diagnóstico rápido e descubra como a R&B Labs pode digitalizar sua operação em poucas semanas.
             </p>
             
             <button 
               onClick={openModal}
-              className="inline-block bg-white text-blue-900 hover:bg-blue-50 font-bold py-5 px-10 rounded-lg transition-all shadow-xl hover:shadow-2xl hover:scale-105 duration-300 transform"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white font-bold py-5 px-10 rounded-full transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)] hover:bg-blue-500 hover:-translate-y-1 duration-300"
             >
-              Agendar Diagnóstico Agora
+              Fazer Diagnóstico Gratuito Agora
             </button>
             
+            <p className="mt-6 text-slate-400 text-xs uppercase tracking-widest font-bold">
+              Atendimento focado e sem jargões técnicos.
+            </p>
           </div>
         </FadeIn>
       </section>
