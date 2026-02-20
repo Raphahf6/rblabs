@@ -1,7 +1,7 @@
 "use client"
 import { ArrowRight, Code2, Menu, X, TrendingUp, CheckCircle2, Rocket, Bot, BarChart } from 'lucide-react';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeroProps {
   onCtaClick: () => void;
@@ -12,7 +12,10 @@ export default function Hero({ onCtaClick }: HeroProps) {
 
   const scrollToSection = (id: string) => {
     setIsMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -24,7 +27,7 @@ export default function Hero({ onCtaClick }: HeroProps) {
 
       <div className="container mx-auto px-6 max-w-7xl">
         {/* NAV BAR */}
-        <nav className="flex justify-between items-center mb-16 md:mb-24 relative z-50">
+        <nav className="flex justify-between items-center mb-16 md:mb-24 relative z-[60]">
           <div className="text-2xl font-black flex items-center gap-3 text-slate-900 cursor-pointer tracking-tight" onClick={() => scrollToSection('inicio')}>
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-600/20">
               <Code2 size={22} />
@@ -32,8 +35,9 @@ export default function Hero({ onCtaClick }: HeroProps) {
             R&B Digital
           </div>
 
+          {/* Menu Desktop */}
           <div className="hidden md:flex gap-8 text-sm font-bold text-slate-600">
-            <button onClick={() => scrollToSection('problemas')} className="hover:text-blue-600 transition-colors">O Cenário</button>
+            <button onClick={() => scrollToSection('dados')} className="hover:text-blue-600 transition-colors">O Cenário</button>
             <button onClick={() => scrollToSection('metodologia')} className="hover:text-blue-600 transition-colors">Como Ajudamos</button>
             <button onClick={() => scrollToSection('solucoes')} className="hover:text-blue-600 transition-colors">Soluções</button>
           </div>
@@ -42,15 +46,44 @@ export default function Hero({ onCtaClick }: HeroProps) {
             Agendar Consultoria
           </button>
 
-          <button className="md:hidden text-slate-900 p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {/* Botão Hambúrguer Mobile */}
+          <button className="md:hidden text-slate-900 p-2 z-[70]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </nav>
 
+        {/* MENU MOBILE OVERLAY */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed inset-0 bg-white z-[55] flex flex-col p-8 md:hidden"
+            >
+              <div className="flex flex-col gap-8 mt-20">
+                <button onClick={() => scrollToSection('dados')} className="text-2xl font-black text-slate-900 text-left">O Cenário</button>
+                <button onClick={() => scrollToSection('metodologia')} className="text-2xl font-black text-slate-900 text-left">Como Ajudamos</button>
+                <button onClick={() => scrollToSection('solucoes')} className="text-2xl font-black text-slate-900 text-left">Soluções</button>
+                <button onClick={() => scrollToSection('faq')} className="text-2xl font-black text-slate-900 text-left">Dúvidas</button>
+                
+                <hr className="border-slate-100" />
+                
+                <button 
+                  onClick={() => { setIsMenuOpen(false); onCtaClick(); }}
+                  className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold text-lg shadow-lg"
+                >
+                  Agendar Consultoria
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* HERO CONTENT */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           
-          {/* Lado Esquerdo: A Copy de Crescimento (Growth) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,7 +115,6 @@ export default function Hero({ onCtaClick }: HeroProps) {
               </motion.button>
             </div>
             
-            {/* Trust Indicators focados em resultado positivo */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 text-sm font-bold text-slate-600">
               <div className="flex items-center gap-2">
                 <Bot size={18} className="text-blue-500" />
@@ -99,7 +131,7 @@ export default function Hero({ onCtaClick }: HeroProps) {
             </div>
           </motion.div>
           
-          {/* Lado Direito: O Visual do Crescimento e Produtividade */}
+          {/* Lado Direito: O Visual do Crescimento */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -107,8 +139,6 @@ export default function Hero({ onCtaClick }: HeroProps) {
             className="relative hidden lg:block perspective-1000"
           >
              <div className="w-full h-[500px] relative">
-                
-                {/* Card de Fundo (Acelerador de Produtividade) */}
                 <div className="absolute top-8 right-0 w-[360px] bg-white rounded-2xl shadow-xl border border-slate-100 p-6 transform rotate-3">
                   <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-4">
                     <div className="flex items-center gap-3">
@@ -133,7 +163,6 @@ export default function Hero({ onCtaClick }: HeroProps) {
                   </div>
                 </div>
 
-                {/* Card Frontal (O Gráfico de Crescimento) */}
                 <div className="absolute bottom-8 left-4 w-[380px] bg-slate-900 rounded-2xl shadow-2xl border border-slate-800 p-7 transform -rotate-2 z-10">
                   <div className="absolute -top-4 -left-4 bg-blue-600 text-white text-xs font-black px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 uppercase tracking-wider">
                     <TrendingUp size={16} />
@@ -150,15 +179,13 @@ export default function Hero({ onCtaClick }: HeroProps) {
                     </div>
                   </div>
 
-                  {/* Gráfico Visual Simplificado */}
                   <div className="h-32 flex items-end gap-2 pt-4 border-t border-slate-800">
-                    <div className="w-full bg-slate-800 rounded-t-md h-[20%] relative group hover:bg-slate-700 transition-colors"><div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 text-xs text-white">Q1</div></div>
-                    <div className="w-full bg-slate-800 rounded-t-md h-[35%] relative group hover:bg-slate-700 transition-colors"><div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 text-xs text-white">Q2</div></div>
-                    <div className="w-full bg-slate-800 rounded-t-md h-[60%] relative group hover:bg-blue-600/50 transition-colors"><div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 text-xs text-white">Q3</div></div>
-                    <div className="w-full bg-gradient-to-t from-blue-600 to-emerald-400 rounded-t-md h-[100%] shadow-[0_0_15px_rgba(52,211,153,0.3)] relative group"><div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-emerald-400">Hoje</div></div>
+                    <div className="w-full bg-slate-800 rounded-t-md h-[20%]"></div>
+                    <div className="w-full bg-slate-800 rounded-t-md h-[35%]"></div>
+                    <div className="w-full bg-slate-800 rounded-t-md h-[60%]"></div>
+                    <div className="w-full bg-gradient-to-t from-blue-600 to-emerald-400 rounded-t-md h-[100%]"></div>
                   </div>
                 </div>
-
              </div>
           </motion.div>
         </div>
